@@ -36,11 +36,11 @@ class Grade(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     auth = models.ForeignKey(User, on_delete=models.CASCADE)
     grade_number = models.IntegerField(choices=[
-        ('1', '1'),
-        ('2', '2'),
-        ('3', '3'),
-        ('4', '4'),
-        ('5', '5'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
     ], null=True, blank=True)
 
     class Meta:

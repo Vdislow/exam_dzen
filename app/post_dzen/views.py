@@ -98,7 +98,7 @@ class GradePost(ListCreateAPIView):
                 post=get_object_or_404(Post, id=self.kwargs['post_id'])
             )
         except IntegrityError:
-            post_upd = get_object_or_404(Grade, post=self.kwargs['post_id'])
+            post_upd = Grade.objects.filter(auth=self.request.user)
             post_upd.delete()
         return serializer.save(
                 auth=self.request.user,
