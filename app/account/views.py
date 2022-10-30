@@ -2,12 +2,16 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework.generics import ListCreateAPIView
+from drf_yasg.utils import swagger_auto_schema
 
 from .models import User
 from .serializers import RegisterSerializer
 
 
 class RegisterUser(CreateAPIView):
+    """
+        Account API endpoint to create users
+    """
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
 

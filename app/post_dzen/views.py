@@ -9,6 +9,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from rest_framework.response import Response
 from rest_framework import status
 import telebot
+from drf_yasg.utils import swagger_auto_schema
 
 from .models import Post, Comment, Grade
 from .serializers import PostSerializer, CommentSerializer, GradeSerializer
@@ -19,11 +20,15 @@ bot = telebot.TeleBot("5717582821:AAF_FuaoW3JOi2uKRhskwTgQUl2PJPMcsXM", parse_mo
 
 
 class PostListCreate(ListCreateAPIView):
+    """
+        Post API endpoint to get list and create posts
+    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (PostPermission, )
     authentication_classes = (TokenAuthentication, SessionAuthentication)
 
+    @swagger_auto_schema(responses={200: PostSerializer(many=True)}, operation_description="Get list of posts")
     def post(self, request, *args, **kwargs):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
@@ -35,6 +40,9 @@ class PostListCreate(ListCreateAPIView):
 
 
 class PostRUD(RetrieveUpdateDestroyAPIView):
+    """
+        Comment API endpoint to retrieve, update and delete comments
+    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (PostPermission,)
@@ -42,6 +50,9 @@ class PostRUD(RetrieveUpdateDestroyAPIView):
 
 
 class CommentListCreate(ListCreateAPIView):
+    """
+        Post API endpoint to get list and create comments
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     # permission_classes = (CommentRUDPermission,)
@@ -63,6 +74,9 @@ class CommentListCreate(ListCreateAPIView):
 
 
 class CommentRUD(RetrieveUpdateDestroyAPIView):
+    """
+        Comment API endpoint to retrieve, update and delete comments
+    """
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
     permission_classes = (CommentRUDPermission,)
@@ -70,6 +84,9 @@ class CommentRUD(RetrieveUpdateDestroyAPIView):
 
 
 class GradePost(ListCreateAPIView):
+    """
+        Grade API endpoint to get list and create grade for posts
+    """
     queryset = Grade.objects.all()
     serializer_class = GradeSerializer
     permission_classes = (GradePermission,)
