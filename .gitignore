@@ -3,3 +3,4 @@ venv/
 app/account/__pycache__/
 app/post_dzen/__pycache__/
 app/post_dzen/migrations/__pycache__/
+.env.dev
