@@ -28,6 +28,7 @@ DEBUG = int(os.environ.get('DEBUG', default=0))
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -95,6 +96,7 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT"),
     }
 }
+
 
 
 # Password validation

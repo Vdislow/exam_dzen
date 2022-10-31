@@ -24,8 +24,8 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     auth = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     text = models.CharField(max_length=255)
-    user_name = models.CharField(verbose_name='Name', max_length=100, blank=True, null=True,
-                                 help_text=_('Если вы незарегестнрированный пользователь укажите временный username'), )
+    user_name = models.CharField(verbose_name='Name', max_length=100, blank=True,
+                                 help_text=_('Если вы незарегестнрированный пользователь укажите временный username'),)
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -47,4 +47,4 @@ class Grade(models.Model):
         unique_together = ('post', 'auth')
 
     def __str__(self):
-        return self.post.text
+        return self.grade_number
